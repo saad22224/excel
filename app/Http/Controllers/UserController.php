@@ -20,20 +20,12 @@ class UserController extends Controller
         return redirect()->back()->with('done' , 'users imported successfully');
     }
 
-    public function index()
-    {
-        $users = User::all();
-        return view('users' ,[
-            'users' => DB::table('users')->paginate(10)
-        ]);
-    }
-   // تعريف خاصية البحث
-        public $search = '';
-    public function search()
-    {
-        return view('users', [
-            'users' => User::where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('email', 'like', '%' . $this->search . '%'),
-        ]);
-    }
+    // public function index()
+    // {
+    //     $users = User::all();
+    //     return view('users' ,[
+    //         'users' => DB::table('users')->paginate(10)
+    //     ]);
+    // }
+
 }

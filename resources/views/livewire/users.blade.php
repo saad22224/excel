@@ -77,10 +77,7 @@
         </script>
         @endif
 
-
-
         @if($users->count() > 0)
-
         <div class="card mt-4">
             <input wire:model='search' type="search" class="form-control mb-3" placeholder="Search users by name or email" />
             <div class="card-header bg-secondary text-white">

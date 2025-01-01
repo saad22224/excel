@@ -21,4 +21,4 @@ Route::get('/', function () {
 
 
 Route::post('/' , [Users::class , 'import'])->name('import.users');
-Route::get('/' , [Users::class , 'index'])->name('users');
+Route::get('/' , [Users::class , 'render'])->name('users');
