@@ -20,12 +20,12 @@ class UserController extends Controller
         return redirect()->back()->with('done' , 'users imported successfully');
     }
 
-    // public function index()
-    // {
-    //     $users = User::all();
-    //     return view('users' ,[
-    //         'users' => DB::table('users')->paginate(10)
-    //     ]);
-    // }
+    public function index()
+    {
+        $users = User::all();
+        return view('users' ,[
+            'users' => DB::table('users')->paginate(10)
+        ]);
+    }
 
 }

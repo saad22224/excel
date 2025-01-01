@@ -92,6 +92,7 @@
                             <th>Email</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach($users as $index => $user)
                         <tr>

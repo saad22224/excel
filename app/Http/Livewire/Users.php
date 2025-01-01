@@ -16,6 +16,7 @@ use Livewire\Component;
 class Users extends Component
 {
     use WithPagination;
+    public $search = '';
     public function import(Request $request)
     {
         $request->validate([
@@ -25,10 +26,6 @@ class Users extends Component
         Excel::import(new UsersImport, $file);
         return redirect()->back()->with('done' , 'users imported successfully');
     }
-
-    
-    public $search = '';
-
     public function updatingSearch()
     {
         // Reset the pagination when search changes
