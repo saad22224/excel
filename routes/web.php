@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Users;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('livewire.users');
 });
-
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('route:cache');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    return  "all cleared ...";
+});
 
 Route::post('/' , [Users::class , 'import'])->name('import.users');
 Route::get('/' , [Users::class , 'render'])->name('users');

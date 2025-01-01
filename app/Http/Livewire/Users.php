@@ -26,6 +26,7 @@ class Users extends Component
         Excel::import(new UsersImport, $file);
         return redirect()->back()->with('done' , 'users imported successfully');
     }
+
     public function updatingSearch()
     {
         // Reset the pagination when search changes
