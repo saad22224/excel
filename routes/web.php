@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::get('/', function () {
-    return view('livewire.users');
+    return view('users');
 });
 Route::get('/clear', function() {
     Artisan::call('cache:clear');
@@ -27,5 +26,6 @@ Route::get('/clear', function() {
     return  "all cleared ...";
 });
 
-Route::post('/' , [Users::class , 'import'])->name('import.users');
-Route::get('/' , [Users::class , 'render'])->name('users');
+Route::post('/' , [UserController::class , 'import'])->name('import.users');
+// Route::get('/' , [UserController::class , 'index'])->name('users');
+

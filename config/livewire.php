@@ -14,7 +14,7 @@ return [
     | After changing this item, run: `php artisan livewire:discover`.
     |
     */
-'asset_url'  =>  env('APP_URL', 'http://localhost'),
+
     'class_namespace' => 'App\\Http\\Livewire',
 
     /*

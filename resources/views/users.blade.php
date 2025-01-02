@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -39,14 +40,13 @@
         }
     </style>
 
-
+@livewireStyles
 </head>
 
 <body>
 
     <div class="container mt-5">
         <div class="card">
-        <input wire:input="search" type="search" class="form-control mb-3" placeholder="Search users by name or email" />
 
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0">Import Users from Excel</h4>
@@ -78,50 +78,41 @@
             });
         </script>
         @endif
-
-
-        @if($users->count() > 0)
-        <div class="card mt-4">
-            <div class="card-header bg-secondary text-white">
-                <h4 class="mb-0">Imported Users</h4>
-            </div>
-            <div class="card-body p-0">
-                <table class="table table-bordered mb-0" style="background-color: #f9f9f9;">
-                    <thead class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $index => $user)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center mt-3">
-            {{ $users->links('pagination::bootstrap-5') }}
-        </div>
-        @else
-        <div class="alert alert-info mt-4">
-            No users imported yet.
-        </div>
+        @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Toastify({
+                    text: "{{ session('error') }}",
+                    className: "info",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            });
+        </script>
         @endif
+        @if (session('secondError'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Toastify({
+                    text: "{{ session('secondError') }}",
+                    className: "info",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    }
+                }).showToast();
+            });
+        </script>
+        @endif
+
+        <livewire:showusers />
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-
+    @livewireScripts
 </body>
 
 </html>

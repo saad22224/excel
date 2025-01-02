@@ -16,8 +16,15 @@ class UserController extends Controller
             'file' => 'required|mimes:xlsx'
         ]);
         $file = $request->file('file');
-        Excel::import(new UsersImport, $file);
-        return redirect()->back()->with('done' , 'users imported successfully');
+        if($file->getClientOriginalExtension() != 'xlsx'){
+            return redirect()->back()->with('error' , 'file must be xlsx');
+        }
+        try{
+            Excel::import(new UsersImport, $file);
+            return redirect()->back()->with('done' , 'users imported successfully');
+        }catch(\Exception $e){
+            return redirect()->back()->with('error' , 'something went wrong');
+        }
     }
 
     public function index()
